@@ -240,6 +240,14 @@ IntBST::Node* IntBST::getSuccessorNode(int value) const{
     return parent;
 }
 
+int IntBST::getSuccessor(int value) const{
+    Node* successorNode = getSuccessorNode(value);
+    if (!successorNode) { //if there is no successor node, then there is no successor value
+        return 0; 
+    }
+    return successorNode->info; //otherwise return the info of the successor node
+}
+
 // deletes the Node containing the given value from the tree
 // returns true if the node exist and was deleted or false if the node does not exist
 bool IntBST::remove(int value) {
