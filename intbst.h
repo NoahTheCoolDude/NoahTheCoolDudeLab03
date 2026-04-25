@@ -33,7 +33,7 @@ class IntBST {
 
     struct Node {
 	int info;
-	Node *left, *right, * parent;
+	Node *left, *right, *parent;
 	// useful constructor:
     Node(int v=0) : info(v), left(0), right(0), parent(0) { }
     };
@@ -44,7 +44,7 @@ class IntBST {
     // recursive utility functions for use by public methods above
     Node* getNodeFor(int value, Node* n) const; // IMPLEMENT THIS FIRST: returns the node for a given value or NULL if none exists
     void clear(Node *n); // for destructor
-    bool insert(int value, Node *n); // note overloading names for simplicity
+    bool insert(int value, Node*& n); // had to change to &*n so that my insert function works as intended
     void printPreOrder(Node *n) const;
     void printInOrder(Node *n) const;
     void printPostOrder(Node *n) const;

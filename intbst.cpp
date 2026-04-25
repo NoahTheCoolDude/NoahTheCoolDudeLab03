@@ -200,17 +200,6 @@ int IntBST::getPredecessor(int value) const{
     return predecessorNode->info; //otherwise return the info of the predecessor node
 }
 
-// returns the Node containing the successor of the given value
-IntBST::Node* IntBST::getSuccessorNode(int value) const{
-    //copied from get predecessor node and changed left to right, since successor is the right child
-
-    Node* n = getNodeFor(value, root); 
-    if (!n) {
-        return NULL; 
-    }
-    return n->right;
-}
-
 // returns the successor value of the given value or 0 if there is none
 IntBST::Node* IntBST::getSuccessorNode(int value) const{
     //basically same as get predecessor node but with right and left switched, since successor is the next LARGEST val
