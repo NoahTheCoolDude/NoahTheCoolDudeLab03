@@ -44,7 +44,7 @@ class IntBST {
     // recursive utility functions for use by public methods above
     Node* getNodeFor(int value, Node* n) const; // IMPLEMENT THIS FIRST: returns the node for a given value or NULL if none exists
     void clear(Node *n); // for destructor
-    bool insert(int value, Node*& n); // had to change to &*n so that my insert function works as intended
+    bool insert(int value, Node* n); // nvm, leave it as pass by value because it was messing stuff up
     void printPreOrder(Node *n) const;
     void printInOrder(Node *n) const;
     void printPostOrder(Node *n) const;

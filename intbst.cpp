@@ -31,24 +31,37 @@ void IntBST::clear(Node *n) {
 
 // insert value in tree; return false if duplicate
 bool IntBST::insert(int value) {
-    return insert(value, root); // calls the recursive helper function, starting with the root node
+    // check the root first, since we need to set it if the tree is empty
+    if (!root) {
+        root = new Node(value);
+        return true; 
+    }
+    return insert(value, root); 
 }
 
-// recursive helper for insert (assumes n is never 0)
-bool IntBST::insert(int value, Node*& n) { //must be passed by reference otherwise we will never modify the original BST, claude told me
-    // base case, we are at a nullptr so insert
-    if (!n) {
-        n = new Node(value); //make a heap allocated Node, otherwise it wouldn't exist after function call
-        return true;
-    }
-
-    if (n) { //only insert if there is a parent to go into, this is lowk redundant but i started with it so i'll keep it
-        if (n->info == value) { // value is a duplicate
-            return false;
-        } else if (n->info > value) {
-            return insert(value, n->left); //recurse on the left as we are smaller
+// recursive helper for insert
+bool IntBST::insert(int value, Node* n) {
+    if (value == n->info) { 
+        return false; // value is a duplicate
+    } 
+    
+    if (value < n->info) {
+        // look to left if less than current node
+        if (n->left != NULL) {
+            return insert(value, n->left); // if there is something there, reurse
         } else {
-            return insert(value, n->right); //recurse on the right as we are larger
+            // nothing here! add the node and link it
+            n->left = new Node(value);
+            n->left->parent = n; 
+            return true;
+        }
+    } else { //same thing but on the right (value is now greater than current node)
+        if (n->right != NULL) {
+            return insert(value, n->right); // recurse
+        } else {
+            n->right = new Node(value);
+            n->right->parent = n; 
+            return true;
         }
     }
 }
